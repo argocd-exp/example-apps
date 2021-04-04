@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus
+spec:
+  serviceAccountName: test
+  serviceMonitorSelector:
+    matchLabels:
+      env: production
+  resources:
+    requests:
+      memory: 400Mi
+    limits:
+      memory: 400Mi
