@@ -1,0 +1,26 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus
+spec:
+  serviceAccountName: test
+  serviceMonitorSelector:
+    matchLabels:
+      env: production
+  resources:
+    requests:
+      memory: 400Mi
+
+####################################################################
+## To maintain data across deployments and version upgrades,      ##
+## the data must be persisted to some volume other than emptyDir, ##
+## allowing it to be reused by Pods after an upgrade.             ##
+####################################################################
+#  storage:
+#    volumeClaimTemplate:
+#      spec:
+#        resources:
+#          requests:
+#            storage: 1Gi
+#        storageClassName: block-storage-standard
+#
